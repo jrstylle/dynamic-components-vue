@@ -1,11 +1,11 @@
 <template>
 <div>
 <div class="tab">
-  <button class="tablinks" :class="{'active': componentId === component}" @click="changeTab" v-for="(component, index) in components" :key="index">{{component}}</button>
+  <router-link :to="{name: component}" tag="button" class="tablinks"  v-for="(component, index) in components" :key="index">{{component}}</router-link>
 </div>
-<div class="tab-content">
+<div class="tabcontent">
   <keep-alive>
-    <component :is="componentId"></component>
+    <router-view></router-view>
   </keep-alive>
 </div>
 </div>
@@ -15,16 +15,8 @@
 export default {
   methods: {
     changeTab ($event) {
-      const target = $event.target
-      this.componentId = this.requireComponent(target.innerText)
-    },
-    requireComponent (componentName) {
-      return (resolve) => require([`@/pages/${componentName}`], resolve)
-    }
-  },
-  data () {
-    return {
-      componentId: ''
+      const target = $event.target.innerText
+      this.$router.push({to: {name: target}})
     }
   },
   props: {
@@ -62,7 +54,7 @@ export default {
     background-color: #ccc;
 }
 
-.tabcontent {
+.tab-content {
     display: none;
     padding: 6px 12px;
     border: 1px solid #ccc;

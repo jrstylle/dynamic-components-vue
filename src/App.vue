@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <BaseTab :components="['Home', 'Page1', 'Page2']"/>
+    <BaseTab :components="['HelloWorld','Home', 'Page1', 'Page2']"/>
   </div>
 </template>
 
