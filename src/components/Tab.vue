@@ -4,15 +4,14 @@
   <button class="tablinks" :class="{'active': componentId === component}" @click="changeTab" v-for="(component, index) in components" :key="index">{{component}}</button>
 </div>
 <div class="tab-content">
-  <component :is="componentId"></component>
+  <keep-alive>
+    <component :is="componentId"></component>
+  </keep-alive>
 </div>
 </div>
 </template>
 
 <script>
-import Home from '@/pages/Home'
-import Page1 from '@/pages/Page1'
-import Page2 from '@/pages/Page2'
 export default {
   components: {
     Home,
