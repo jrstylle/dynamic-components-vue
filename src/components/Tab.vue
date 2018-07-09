@@ -13,15 +13,13 @@
 
 <script>
 export default {
-  components: {
-    Home,
-    Page1,
-    Page2
-  },
   methods: {
     changeTab ($event) {
       const target = $event.target
-      this.componentId = target.innerText
+      this.componentId = this.requireComponent(target.innerText)
+    },
+    requireComponent (componentName) {
+      return (resolve) => require([`@/pages/${componentName}`], resolve)
     }
   },
   data () {
